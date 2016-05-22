@@ -1,0 +1,56 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+	<div class="row">
+		<div class="col-md-7">
+			<h1>{{ series.name }}<small> by {{series.manufacturer}}</small></h1>
+			<p>{{series.description}}</p>
+		</div>
+		<div class="col-md-5">
+			<figure class="text-right">
+				<img src="{{creator.picture}}" style="max-width:100px; border-radius: 50%;">
+				<figcaption>Added by: {{ creator.name }}<br>{{ creator.email }}</figcaption>
+			</figure>
+		</div>
+	</div>
+
+<div class ="row">
+	<div class="col-md-12">
+		      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+	</div>
+</div>
+
+	{% if items !=[] %}	
+		{% set count = 0 %}
+		<div class="row">
+			{% for i in items %}
+				{% if count is divisibleby(3) and count > 0%}
+					<div class="clearfix visible-xs-block"></div>
+				</div>
+				<div class="row">
+				{% endif %}
+				<div class="col-md-4">
+					<div class="well well-sm">
+						<h4>{{i.name}}</h4>
+						<p stlye="font-size:10px;">Footprint: {{i.footprint}}<br>
+						Form: {{i.contactForm}}<br>
+						Enclosure: {{i.enclosure}}<br>
+						Enhancement: {{i.enhancement}}<br>
+						Voltage: {{i.voltage}}<br>
+						</p>
+					</div>
+				</div>
+				{% set count = count + 1 %}
+			{% endfor %}
+		</div>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Edit Part</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<form action="{{ url_for('editPart', series_id = series_id, part_id = part_id)}}" method = "post">
+				<div class="form-group">
+					<label for="name">Name:</label>
+					<input type ="text" class="form-control" maxlength="80" name="name" value="{{item.name }}">
+					<label for="footprint">Footprint:</label>
+					<input type ="text" class="form-control" maxlength="100" name="footprint" value="{{item.footprint }}">
+					<label for="contactForm">Contact Form:</label>
+					<input type ="text" class="form-control" maxlength="50" name="contactForm" value="{{item.contactForm }}">
+					<label for="enclosure">Enclosure:</label>
+					<input type ="text" class="form-control" maxlength="100" name="enclosure" value="{{item.enclosure }}">
+					<label for="enhancement">Enhancement:</label>
+					<input type ="text" class="form-control" maxlength="200" name="enhancement" value="{{item.enhancement }}">
+					<label for="voltage">Voltage:</label>
+					<input type ="text" class="form-control" maxlength="100" name="voltage" value="{{item.voltage }}">
+					<button type="submit" class="btn btn-default" id="submit" type="submit">
+					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save</button>
+				</div>
+			</form>
+			<a href = "{{url_for('showSeries', series_id = series_id)}}">
+				<button class="btn btn-default">
+				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel
+				</button>
+			</a>
+		</div>
+	</div>
+{% endblock %}
